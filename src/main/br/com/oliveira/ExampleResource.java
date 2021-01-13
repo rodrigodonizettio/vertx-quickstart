@@ -18,6 +18,15 @@ public class ExampleResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
+        readFileUsingAsyncVertxMutinyUniBuffer();
+        return "Hello RESTEasy";
+    }
+
+    private String getSampleFilePath() {
+        return new File("../src/main/resources/sample-name.txt").getPath();
+    }
+
+    private void readFileUsingAsyncVertxMutinyUniBuffer() {
         vertx.fileSystem().readFile(getSampleFilePath())
                 .onItem().transform(buffer -> buffer.toString("UTF-8"))
                 .subscribe()
@@ -25,10 +34,5 @@ public class ExampleResource {
                         content -> System.out.println("Content: " + content),
                         err -> System.out.println("Cannot read the file: " + err.getMessage())
                 );
-        return "Hello RESTEasy";
-    }
-
-    private String getSampleFilePath() {
-        return new File("../src/main/resources/sample-name.txt").getPath();
     }
 }
