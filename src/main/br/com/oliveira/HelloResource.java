@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 
 @Path("/hello")
-public class ExampleResource {
+public class HelloResource {
 
     @Inject
     Vertx vertx;
