@@ -34,6 +34,6 @@ public class LoremResource {
     }
 
     private String getSampleFilePath() {
-        return new File("main/resources/sample-lorem.txt").getPath();
+        return new File("../src/main/resources/sample-lorem.txt").getPath();
     }
 }
