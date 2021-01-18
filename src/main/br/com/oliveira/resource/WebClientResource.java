@@ -1,4 +1,4 @@
-package main.br.com.oliveira;
+package main.br.com.oliveira.resource;
 
 import io.smallrye.mutiny.Uni;
 import io.vertx.core.json.JsonObject;
@@ -41,7 +41,7 @@ public class WebClientResource {
                     } else {
                         return new JsonObject()
                                 .put("code", res.statusCode())
-                                .put("messsage", res.bodyAsString());
+                                .put("message", res.bodyAsString());
                     }
                 });
     }

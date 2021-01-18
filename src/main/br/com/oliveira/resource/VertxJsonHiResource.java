@@ -1,4 +1,4 @@
-package main.br.com.oliveira;
+package main.br.com.oliveira.resource;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;

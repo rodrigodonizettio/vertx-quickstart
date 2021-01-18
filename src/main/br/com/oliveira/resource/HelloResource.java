@@ -1,4 +1,4 @@
-package main.br.com.oliveira;
+package main.br.com.oliveira.resource;
 
 import io.vertx.mutiny.core.Vertx;
 
