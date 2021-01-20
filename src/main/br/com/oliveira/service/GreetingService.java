@@ -14,12 +14,12 @@ public class GreetingService {
   Executor executor;
 
   /** If not set, address is the fully qualified name of the bean. e.g. "main.br.com.oliveira.service.GreetingService" **/
-  @ConsumeEvent
+  @ConsumeEvent("greeting-address1")
   public String consume(String name) {
     return name.toUpperCase();
   }
 
-  @ConsumeEvent
+  @ConsumeEvent("greeting-address1")
   public Uni<String> process(String name) {
     return Uni.createFrom().item(() -> name.toUpperCase()).emitOn(executor);
   }
