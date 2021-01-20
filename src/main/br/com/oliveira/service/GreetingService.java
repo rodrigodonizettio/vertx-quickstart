@@ -1,6 +1,7 @@
 package main.br.com.oliveira.service;
 
 import io.quarkus.vertx.ConsumeEvent;
+import io.smallrye.common.annotation.Blocking;
 
 import javax.enterprise.context.ApplicationScoped;
 
@@ -12,8 +13,10 @@ public class GreetingService {
     return name.toUpperCase();
   }
 
-  /** For blocking consumer code use the parameter "blocking = true" **/
-  @ConsumeEvent(value = "blocking-consumer", blocking = true)
+  /** For blocking consumer code use the parameter "blocking = true" inside @ConsumeEvent or use the annotation @Blocking **/
+//  @ConsumeEvent(value = "blocking-consumer", blocking = true)
+  @ConsumeEvent(value = "blocking-consumer")
+  @Blocking
   public void consumeBlocking(String message) {
     doSomethingBlocking();
   }
