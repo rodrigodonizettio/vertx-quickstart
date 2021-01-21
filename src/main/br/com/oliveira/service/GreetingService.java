@@ -3,6 +3,7 @@ package main.br.com.oliveira.service;
 import io.quarkus.vertx.ConsumeEvent;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
+import io.vertx.core.eventbus.Message;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -20,7 +21,10 @@ public class GreetingService {
   }
 
   @ConsumeEvent("greeting-address1")
-  public Uni<String> process(String name) {
+  public void consumeAndForget(Message<String> message) {
+    System.out.println(message.address());
+    System.out.println(message.body());
+  }
 
   @ConsumeEvent("greeting-address1")
   public Uni<String> processAndReply(String name) {
