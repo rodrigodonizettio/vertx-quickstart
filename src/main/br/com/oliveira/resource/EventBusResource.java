@@ -19,7 +19,7 @@ public class EventBusResource {
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   @Path("{name}")
-  public Uni<String> greetingAddress1(@PathParam String name) {
+  public Uni<String> sendMessageAndExpectReply(@PathParam String name) {
     return eventBus.<String>request("greeting-address1", name)
             .onItem().transform(Message::body);
   }
