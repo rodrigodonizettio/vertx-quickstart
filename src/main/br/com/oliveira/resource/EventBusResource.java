@@ -29,4 +29,8 @@ public class EventBusResource {
     return eventBus.sendAndForget("greeting-address1", name);
   }
 
+  @Path("{name}")
+  public EventBus publishMessageToSpecificAddressWhereAllConsumersReceiveTheMessages(@PathParam String name) {
+    return eventBus.sendAndForget("greeting-address1", name);
+  }
 }
