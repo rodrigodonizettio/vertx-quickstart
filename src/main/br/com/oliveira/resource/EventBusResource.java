@@ -24,11 +24,15 @@ public class EventBusResource {
             .onItem().transform(Message::body);
   }
 
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
   @Path("{name}")
   public EventBus sendMessageToSpecificAddressWhereSingleConsumerReceivesTheMessage(@PathParam String name) {
     return eventBus.sendAndForget("greeting-address1", name);
   }
 
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
   @Path("{name}")
   public EventBus publishMessageToSpecificAddressWhereAllConsumersReceiveTheMessages(@PathParam String name) {
     return eventBus.sendAndForget("greeting-address1", name);
