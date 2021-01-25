@@ -23,4 +23,10 @@ public class EventBusResource {
     return eventBus.<String>request("greeting-address1", name)
             .onItem().transform(Message::body);
   }
+
+  @Path("{name}")
+  public EventBus sendMessageToSpecificAddressWhereSingleConsumerReceivesTheMessage(@PathParam String name) {
+    return eventBus.sendAndForget("greeting-address1", name);
+  }
+
 }
