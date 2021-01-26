@@ -11,25 +11,31 @@ import java.util.concurrent.Executor;
 
 @ApplicationScoped
 public class GreetingService {
-  @Inject
-  Executor executor;
+  //FIXME: See why the below happens
+  /**
+    * javax.enterprise.inject.spi.DeploymentException:
+    * javax.enterprise.inject.UnsatisfiedResolutionException:
+    * Unsatisfied deendency for type java.util.concurrent.Executor and qualifiers [@Default]
+    **/
+//  @Inject
+//  Executor executor;
 
   /** If not set, address is the fully qualified name of the bean. e.g. "main.br.com.oliveira.service.GreetingService" **/
-  @ConsumeEvent("greeting-address1")
+  @ConsumeEvent("greetingaddress1")
   public String consumeAndReply(String name) {
     return name.toUpperCase();
   }
 
-  @ConsumeEvent("greeting-address1")
+  @ConsumeEvent("greetingaddress1")
   public void consumeAndForget(Message<String> message) {
     System.out.println(message.address());
     System.out.println(message.body());
   }
 
-  @ConsumeEvent("greeting-address1")
-  public Uni<String> processAndReply(String name) {
-    return Uni.createFrom().item(() -> name.toUpperCase()).emitOn(executor);
-  }
+//  @ConsumeEvent("greetingaddress1")
+//  public Uni<String> processAndReply(String name) {
+//    return Uni.createFrom().item(() -> name.toUpperCase()).emitOn(executor);
+//  }
 
   /** For blocking consumer code use the parameter "blocking = true" inside @ConsumeEvent or use the annotation @Blocking **/
 //  @ConsumeEvent(value = "blocking-consumer", blocking = true)
