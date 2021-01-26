@@ -26,7 +26,7 @@ public class GreetingService {
     return "GreetingService#consumeAndReply the received message (in Upper Case): " + name.toUpperCase();
   }
 
-  @ConsumeEvent("greetingaddress1")
+  @ConsumeEvent("greetingaddress2")
   public void consumeAndForget(Message<String> message) {
     System.out.println(message.address());
     System.out.println(message.body());

@@ -28,13 +28,13 @@ public class EventBusResource {
   @Produces(MediaType.TEXT_PLAIN)
   @Path("/single-consumer/{name}")
   public EventBus sendMessageToSpecificAddressWhereSingleConsumerReceivesTheMessage(@PathParam String name) {
-    return eventBus.sendAndForget("greetingaddress1", name);
+    return eventBus.sendAndForget("greetingaddress2", name);
   }
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   @Path("/publish/{name}")
   public EventBus publishMessageToSpecificAddressWhereAllConsumersReceiveTheMessages(@PathParam String name) {
-    return eventBus.sendAndForget("greetingaddress1", name);
+    return eventBus.sendAndForget("greetingaddress3", name);
   }
 }
