@@ -20,7 +20,7 @@ public class EventBusResource {
   @Produces(MediaType.TEXT_PLAIN)
   @Path("/send-reply/{name}")
   public Uni<String> sendMessageAndExpectReply(@PathParam String name) {
-    return eventBus.<String>request("greeting-address1", name)
+    return eventBus.<String>request("greetingaddress1", name)
             .onItem().transform(Message::body);
   }
 
@@ -28,15 +28,13 @@ public class EventBusResource {
   @Produces(MediaType.TEXT_PLAIN)
   @Path("/single-consumer/{name}")
   public EventBus sendMessageToSpecificAddressWhereSingleConsumerReceivesTheMessage(@PathParam String name) {
-    return eventBus.sendAndForget("greeting-address1", name);
+    return eventBus.sendAndForget("greetingaddress1", name);
   }
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   @Path("/publish/{name}")
   public EventBus publishMessageToSpecificAddressWhereAllConsumersReceiveTheMessages(@PathParam String name) {
-    return eventBus.sendAndForget("greeting-address1", name);
+    return eventBus.sendAndForget("greetingaddress1", name);
   }
-
-
 }
