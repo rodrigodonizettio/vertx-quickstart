@@ -4,6 +4,7 @@ import io.quarkus.vertx.ConsumeEvent;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import io.vertx.core.eventbus.Message;
+import main.br.com.oliveira.model.MyName;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -24,6 +25,12 @@ public class GreetingService {
   @ConsumeEvent("greetingaddress1")
   public String consumeAndReply(String name) {
     return "GreetingService#consumeAndReply the received message (in Upper Case): " + name.toUpperCase();
+  }
+
+  @ConsumeEvent("greetingaddress5")
+  public Uni<String> consumeObjectAndReply(MyName myName) {
+    return Uni.createFrom().item(() -> "GreetingService#consumeObjectAndReply the received object: " + myName.getClass()
+            + " - with name: " + myName.getName());
   }
 
   @ConsumeEvent("greetingaddress2")
