@@ -23,7 +23,7 @@ public class GreetingService {
   /** If not set, address is the fully qualified name of the bean. e.g. "main.br.com.oliveira.service.GreetingService" **/
   @ConsumeEvent("greetingaddress1")
   public String consumeAndReply(String name) {
-    return name.toUpperCase();
+    return "GreetingService#consumeAndReply the received message (in Upper Case): " + name.toUpperCase();
   }
 
   @ConsumeEvent("greetingaddress1")
