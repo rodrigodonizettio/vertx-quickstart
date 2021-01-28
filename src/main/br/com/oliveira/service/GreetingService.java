@@ -4,6 +4,7 @@ import io.quarkus.vertx.ConsumeEvent;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.mutiny.Uni;
 import io.vertx.core.eventbus.Message;
+import main.br.com.oliveira.codec.MyNameCodec;
 import main.br.com.oliveira.model.MyName;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -32,6 +33,16 @@ public class GreetingService {
     return Uni.createFrom().item(() -> "GreetingService#consumeObjectAndReply the received object: " + myName.getClass()
             + " - with name: " + myName.getName());
   }
+
+  //FIXME: See why the below happens
+  /**
+   * (Quarkus Main Thread) Failed to start application (with profile dev):
+   * java.lang.IllegalArgumentException: Can't register a system codec
+   **/
+//  @ConsumeEvent(value = "greetingaddress6", codec = MyNameCodec.class)
+//  public Uni<String> consumeObjectCodecAndReply(MyName myName) {
+//    return Uni.createFrom().item(() -> "GreetingService#consumeObjectCodecAndReply the received object: " + myName.getName());
+//  }
 
   @ConsumeEvent("greetingaddress2")
   public void consumeAndForget(Message<String> message) {
